@@ -115,3 +115,13 @@ if(menuToggle&&mobileMenu){
   });
   mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
 }
+
+// The standalone V3 preview only contains the redesigned homepage.
+// Keep detailed case-study links functional by routing them to the existing V2 pages.
+if(location.hostname.includes('prem-parekh-portfolio-v3')){
+  const legacyBase='https://prem-parekh-portfolio-v2.vercel.app/';
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(href && !href.startsWith('http') && href.includes('.html')) a.href=legacyBase+href;
+  });
+}
